@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MetaPreviewr — Preview Open Graph, Twitter &amp; LinkedIn Cards</title>
+  <meta name="description" content="Test and preview how your URLs will appear across Open Graph, Twitter Cards, and LinkedIn with live rich-preview cards before you share.">
+
+  <!-- Open Graph (defaults; overridden dynamically by app.js after URL fetch) -->
+  <meta property="og:title" content="MetaPreviewr — URL Social Card Previewer">
+  <meta property="og:description" content="Preview how your links look on Facebook, Twitter/X, and LinkedIn before you share.">
+  <meta property="og:image" content="https://via.placeholder.com/1200x630/1a1a2e/e94560?text=MetaPreviewr">
+  <meta property="og:url" content="https://metapreviewr.app">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MetaPreviewr">
+
+  <!-- Twitter Card defaults -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MetaPreviewr — URL Social Card Previewer">
+  <meta name="twitter:description" content="Preview how your links look on Facebook, Twitter/X, and LinkedIn before you share.">
+  <meta name="twitter:image" content="https://via.placeholder.com/1200x630/1a1a2e/e94560?text=MetaPreviewr">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER / NAV
+       ============================================================ -->
+  <header class="app-header" role="banner">
+    <div class="header-inner">
+      <a href="/" class="logo" aria-label="MetaPreviewr home">
+        <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="var(--accent)"/>
+          <path d="M8 11h16M8 16h12M8 21h8" stroke="#0d0d14" stroke-width="2.4" stroke-linecap="round"/>
+          <circle cx="24" cy="21" r="3" fill="#0d0d14" stroke="var(--accent)" stroke-width="1.5"/>
+        </svg>
+        <span class="logo-text">Meta<span class="logo-accent">Previewr</span></span>
+      </a>
+
+      <nav class="header-nav" aria-label="Primary navigation">
+        <a href="#preview-section" class="nav-link">Preview</a>
+        <a href="#editor-section" class="nav-link">Editor</a>
+        <a href="https://github.com/wiradifit/metapreviewr" target="_blank" rel="noopener noreferrer" class="nav-link nav-github">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       HERO / URL INPUT
+       ============================================================ -->
+  <section class="hero" id="hero-section">
+    <div class="hero-inner">
+      <h1 class="hero-title">
+        See how your links look<br>
+        <span class="gradient-text">before anyone clicks.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Enter a URL to fetch its social meta tags and preview exactly how it will render
+        on Facebook, Twitter/X, and LinkedIn — live.
+      </p>
+
+      <!-- URL input form -->
+      <form class="url-form" id="url-form" role="search" aria-label="Enter a URL to preview">
+        <div class="input-group">
+          <label for="url-input" class="sr-only">Website URL</label>
+          <svg class="input-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 01-1.414-1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 001.414 1.414 2 2 0 010 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414-1.414 4 4 0 00-5.656 0l-1.5 1.5a1 1 0 01-1.414-1.414 4 4 0 005.656 5.656l3 3a4 4 0 005.656-5.656l-1.5-1.5a1 1 0 01-1.414 1.414z" clip-rule="evenodd"/>
+          </svg>
+          <input
+            type="url"
+            id="url-input"
+            class="url-input"
+            placeholder="https://example.com"
+            autocomplete="url"
+            spellcheck="false"
+            required
+            aria-describedby="url-hint"
+          >
+          <span id="url-hint" class="sr-only">Enter a full HTTP or HTTPS URL to fetch and preview its social media meta tags.</span>
+        </div>
+        <button type="submit" class="btn btn-primary" id="fetch-btn">
+          <span class="btn-label">Preview</span>
+          <span class="btn-loader" aria-hidden="true"></span>
+        </button>
+      </form>
+
+      <!-- Quick-demo URLs -->
+      <div class="quick-links" aria-label="Try a sample URL">
+        <span class="quick-label">Try:</span>
+        <button class="chip" data-url="https://github.com">GitHub</button>
+        <button class="chip" data-url="https://developer.mozilla.org">MDN</button>
+        <button class="chip" data-url="https://stripe.com">Stripe</button>
+        <button class="chip" data-url="https://vercel.com">Vercel</button>
+      </div>
+
+      <!-- Error display -->
+      <div id="error-banner" class="error-banner" role="alert" aria-live="polite" hidden>
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0-8a1 1 0 011 1v2a1 1 0 11-2 0V8a1 1 0 011-1zm0-3a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"/></svg>
+        <span id="error-message"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MAIN CONTENT — two-column layout
+       ============================================================ -->
+  <main class="main-content" id="main-content">
+
+    <!-- ---------- LEFT: PREVIEW PANEL ---------- -->
+    <section class="preview-panel" id="preview-section" aria-label="Social preview cards">
+
+      <div class="panel-header">
+        <h2 class="panel-title">Live Preview</h2>
+        <p class="panel-desc">Select a platform to see how your link will appear.</p>
+      </div>
+
+      <!-- Platform tabs -->
+      <div class="platform-tabs" role="tablist" aria-label="Social platform">
+        <button
+          role="tab"
+          class="platform-tab active"
+          data-platform="og"
+          aria-selected="true"
+          aria-controls="og-card"
+          id="tab-og"
+        >
+          <svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          Facebook
+        </button>
+        <button
+          role="tab"
+          class="platform-tab"
+          data-platform="twitter"
+          aria-selected="false"
+          aria-controls="twitter-card"
+          id="tab-twitter"
+        >
+          <svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Twitter / X
+        </button>
+        <button
+          role="tab"
+          class="platform-tab"
+          data-platform="linkedin"
+          aria-selected="false"
+          aria-controls="linkedin-card"
+          id="tab-linkedin"
+        >
+          <svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </button>
+      </div>
+
+      <!-- Preview card containers — one per platform -->
+      <div class="preview-cards">
+
+        <!-- Open Graph / Facebook card -->
+        <div
+          class="preview-card-wrapper active"
+          id="og-card"
+          role="tabpanel"
+          aria-labelledby="tab-og"
+        >
+          <div class="card-label">Facebook / Open Graph</div>
+          <div id="og-preview" class="preview-card-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            <p>Enter a URL above to generate a preview</p>
+          </div>
+        </div>
+
+        <!-- Twitter / X card -->
+        <div
+          class="preview-card-wrapper"
+          id="twitter-card"
+          role="tabpanel"
+          aria-labelledby="tab-twitter"
+          hidden
+        >
+          <div class="card-label">Twitter / X Card</div>
+          <div id="twitter-preview" class="preview-card-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <p>Enter a URL above to generate a preview</p>
+          </div>
+        </div>
+
+        <!-- LinkedIn card -->
+        <div
+          class="preview-card-wrapper"
+          id="linkedin-card"
+          role="tabpanel"
+          aria-labelledby="tab-linkedin"
+          hidden
+        >
+          <div class="card-label">LinkedIn Card</div>
+          <div id="linkedin-preview" class="preview-card-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046l.046-.001c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <p>Enter a URL above to generate a preview</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Raw meta-tags output (collapsible) -->
+      <details class="raw-meta-details">
+        <summary class="raw-meta-summary">
+          <span>View Generated Meta Tags</span>
+          <svg class="chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+        </summary>
+        <pre class="raw-meta-code" id="raw-meta-code"><code>&lt;!-- Fetch a URL to see generated meta tags --&gt;</code></pre>
+        <div class="code-actions">
+          <button class="btn btn-secondary btn-sm copy-meta-btn" id="copy-meta-btn" disabled aria-label="Copy meta tags to clipboard">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25zM5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25z"/></svg>
+            Copy Snippet
+          </button>
+        </div>
+      </details>
+
+    </section>
+
+    <!-- ---------- RIGHT: META TAG EDITOR ---------- -->
+    <section class="editor-panel" id="editor-section" aria-label="Meta tag editor">
+
+      <div class="panel-header">
+        <h2 class="panel-title">Meta Tag Editor</h2>
+        <p class="panel-desc">Edit any tag and watch the preview update in real time.</p>
+      </div>
+
+      <!-- Editor platform filter tabs -->
+      <div class="editor-tabs" role="tablist" aria-label="Editor scope">
+        <button role="tab" class="editor-tab active" data-scope="all" aria-selected="true" id="editor-tab-all">All Tags</button>
+        <button role="tab" class="editor-tab" data-scope="og" aria-selected="false" id="editor-tab-og">Open Graph</button>
+        <button role="tab" class="editor-tab" data-scope="twitter" aria-selected="false" id="editor-tab-twitter">Twitter</button>
+        <button role="tab" class="editor-tab" data-scope="linkedin" aria-selected="false" id="editor-tab-linkedin">LinkedIn</button>
+      </div>
+
+      <!-- Editable meta-tag table -->
+      <div class="meta-table-wrapper" id="meta-table-wrapper">
+        <table class="meta-table" id="meta-table" aria-label="Editable meta tags">
+          <thead>
+            <tr>
+              <th scope="col">Property / Name</th>
+              <th scope="col">Content</th>
+              <th scope="col">Platform</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody id="meta-table-body">
+            <!-- Rows injected by meta-editor.js -->
+            <tr class="empty-state-row">
+              <td colspan="4">
+                <span class="empty-msg">No meta tags loaded. Fetch a URL to begin editing.</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Add new tag row -->
+      <div class="add-tag-bar">
+        <button class="btn btn-ghost btn-sm" id="add-tag-btn" disabled aria-label="Add a new meta tag">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 2a.75.75 0 01.75.75v4.5h4.5a.75.75 0 010 1.5h-4.5v4.5a.75.75 0 01-1.5 0v-4.5h-4.5a.75.75 0 010-1.5h4.5v-4.5A.75.75 0 018 2z"/></svg>
+          Add Meta Tag
+        </button>
+      </div>
+
+      <!-- Validation summary -->
+      <div class="validation-summary" id="validation-summary" hidden aria-live="polite">
+        <span class="validation-count" id="validation-count"></span>
+        <button class="btn btn-ghost btn-sm" id="fix-warnings-btn">Fix All</button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       TOAST CONTAINER
+       ============================================================ -->
+  <div class="toast-container" id="toast-container" aria-live="assertive" aria-atomic="true"></div>
+
+  <!-- ============================================================
+       SCRIPTS — loaded in dependency order
+       ============================================================ -->
+  <script src="utils.js"></script>
+  <script src="platforms.js"></script>
+  <script src="preview-card.js"></script>
+  <script src="meta-editor.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

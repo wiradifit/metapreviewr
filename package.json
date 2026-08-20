@@ -1,0 +1,48 @@
+{
+  "name": "metapreviewr",
+  "version": "1.0.0",
+  "description": "Test and preview how your URLs will appear across Open Graph, Twitter Cards, and LinkedIn with live rich-preview cards before you share.",
+  "author": "Wiradifit <github@wiradifit>",
+  "license": "MIT",
+  "homepage": "https://github.com/wiradifit/metapreviewr",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wiradifit/metapreviewr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wiradifit/metapreviewr/issues"
+  },
+  "keywords": [
+    "open-graph",
+    "twitter-cards",
+    "linkedin-preview",
+    "meta-tags",
+    "social-preview",
+    "seo-tool",
+    "og-tag",
+    "rich-preview",
+    "meta-preview"
+  ],
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start": "npx --yes http-server . -p 3000 -c-1 --cors",
+    "dev": "npm start",
+    "format:check": "npx --yes prettier --check .",
+    "format": "npx --yes prettier --write .",
+    "lint": "npx --yes eslint ."
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "http-server": "^14.1.1",
+    "prettier": "^3.2.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "browserslist": [
+    "defaults",
+    "not dead",
+    "not IE 11"
+  ]
+}
